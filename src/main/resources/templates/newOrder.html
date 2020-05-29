@@ -1,0 +1,225 @@
+
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liquor Store</title>
+    <style type="text/css">
+
+	    .nic{
+	        margin-right: 10px;
+	    }
+        #btn{
+            width: fit-content;
+            padding: 3px;
+            border: 1px solid green;
+        }
+        #submit{
+            width: fit-content;
+            padding: 3px;
+            border: 1px solid green;
+            }
+        #submit:hover{
+        	cursor: pointer;
+        	}
+        #btn:hover{
+            cursor: pointer;
+        }
+        #btn-remove{
+            width: fit-content;
+            padding: 3px;
+            border: 1px solid green;
+        }
+        #btn-remove:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        Naročilo tekočin:
+    </h2>
+     <form method="POST" id="form" th:object="${order}">
+       <br>
+        1. &nbsp; <select id="aroma1" name="aroma" size="1">
+            <option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        </select>
+        <select id="nic1" name="nic" size=1>
+        	<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        </select>
+        <br>
+        2. &nbsp; <select id="aroma2" name="aroma" size="1">
+			<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        </select>
+        <select id="nic2" name="nic" size=1>
+        	<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        </select>
+        <br>
+        3. &nbsp; <select id="aroma3" name="aroma" size="1">
+        	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        </select>
+        <select id="nic3" name="nic" size=1>
+        	<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        </select>
+        <br>
+        <div class="dd1" style="display:none;">
+        	4. &nbsp; <select disabled class="dd1" name="aroma" id="aroma4" size="1">
+        		<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd1" name="nic" id="nic4" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd2" style="display:none;">
+        	5. &nbsp; <select disabled class="dd2" name="aroma" id="aroma5" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd2" name="nic" id="nic5" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd3"  style="display:none;">
+        	6. &nbsp; <select disabled class="dd3" name="aroma" id="aroma6" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd3" name="nic" id="nic6" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd4" style="display:none;">
+        	7. &nbsp; <select disabled class="dd4" name="aroma" id="aroma7" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd4" name="nic" id="nic7" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd5"  style="display:none;">
+        	8. &nbsp; <select disabled class="dd5" name="aroma" id="aroma8" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd5" name="nic" id="nic8" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd6"  style="display:none;">
+        	9. &nbsp; <select disabled class="dd6" name="aroma" id="aroma9" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd6" name="nic" id="nic9" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd7"  style="display:none;">
+        	10. <select disabled class="dd7" name="aroma" id="aroma10" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd7" name="nic" id="nic10" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd8"  style="display:none;">
+        	11. <select disabled class="dd8" name="aroma" id="aroma11" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd8" name="nic" id="nic11" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd9"  style="display:none;">
+        	12. <select disabled class="dd9" name="aroma" id="aroma12" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd9" name="nic" id="nic12" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd10"  style="display:none;">
+        	13. <select disabled class="dd10" name="aroma" id="aroma13" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd10" name="nic" id="nic13" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd11"  style="display:none;">
+        	14. <select disabled class="dd11" name="aroma" id="aroma14" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd11" name="nic" id="nic14" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd12"  style="display:none;">
+        	15. <select disabled class="dd12" name="aroma" id="aroma15" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd12" name="nic" id="nic15" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd13"  style="display:none;">
+        	16. <select disabled class="dd13" name="aroma" id="aroma16" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd13" name="nic" id="nic16" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd14"  style="display:none;">
+        	17. <select disabled class="dd14" name="aroma" id="aroma17" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd14" name="nic" id="nic17" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd15"  style="display:none;">
+        	18. <select disabled class="dd15" name="aroma" id="aroma18" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd15" name="nic" id="nic18" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd16"  style="display:none;">
+        	19. <select disabled class="dd16" name="aroma" id="aroma19" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd16" name="nic" id="nic19" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+        <div class="dd17"  style="display:none;">
+        	20. <select disabled class="dd17" name="aroma" id="aroma20" size="1">
+            	<option th:each="aroma : ${dd_aroma}" th:value="${aroma}" th:utext="${aroma}"/>
+        	</select>
+        	<select disabled class="dd17" name="nic" id="nic20" size=1>
+        		<option th:each="nic : ${dd_nic}" th:value="${nic}" th:utext="${nic}"/>
+        	</select>
+        	<br>
+        </div>
+    	<p id="btn">Dodaj tekočino</p>
+    	<p id="btn-remove" style="display:none;">Odstrani tekočino</p>
+        <p id="submit"> Oddaj </p>
+    </form>
+    <script type="text/javascript" src="order.js"></script>
+    <script type="text/javascript" src="ShowNextDD.js"></script>
+</body>
+</html>

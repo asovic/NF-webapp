@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+      function load_order() {
+            document.getElementById("subpage").innerHTML='<object width="1000px" height="600px" type="text/html" data="newOrder" ></object>';
+    			}
+      function load_history() {
+    	  	document.getElementById("subpage").innerHTML='<object width="1000px" height="600px" type="text/html" data="allHistory" ></object>';
+    	        }
+</script>
+<meta charset="UTF-8">
+<title>User page</title>
+</head>
+<body>
+<div>
+<img alt="logo" src="logo.jpg" height="120" width="300">
+</div>
+<hr>
+<div style="height: 245px; width: 200px; float:left">
+<br>
+<button href ="#" onclick="load_order()"> NAROČILO </button>
+<br>
+<br>
+<button href ="#" onclick="load_history()"> ZGODOVINA </button>
+</div>
+<div id="subpage" style="height: 600px; width: 1000px; float:left">
+</div>
+</body>
+</html>
