@@ -1,10 +1,11 @@
 package com.andrej.test;
 
 import java.util.List;
-import javax.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,13 +49,10 @@ public class WebController {
 	@RequestMapping(value = "/order/", method = RequestMethod.POST, consumes="application/json")
 	public String save_order(@RequestBody String json_input) {
 		Order order = new Order();
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		order.setUsername(user.getUsername());
 		try {
 			order = mapper.readValue(json_input, Order.class);
-			List<Bottle> obj_out = order.getBottle();
-			for (Bottle obj : obj_out) {
-				System.out.println("Aroma: " + obj.getAroma());
-				System.out.println("Nic: " + obj.getNic());
-			}
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,5 +1,8 @@
 package com.andrej.test;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,14 +15,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	DataSource dataSource;
+	
+	@Autowired
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-          .withUser("a").password(passwordEncoder().encode("a")).roles("USER")
-          .and()
-          .withUser("user2").password(passwordEncoder().encode("user2Pass")).roles("USER")
-          .and()
-          .withUser("admin").password(passwordEncoder().encode("adminPass")).roles("ADMIN");
+  	  auth.jdbcAuthentication().dataSource(dataSource)
+  		.usersByUsernameQuery(
+  			"select username,password, enabled from users where username=?")
+  		.authoritiesByUsernameQuery(
+  			"select username, role from user_roles where username=?").passwordEncoder(new BCryptPasswordEncoder());
     }
     
     @Override
@@ -35,17 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           .anyRequest().authenticated()
           .and()
           .formLogin()
-          //.loginPage("/login")
           .loginProcessingUrl("/login")
           .defaultSuccessUrl("/userpage", true)
-          //.failureUrl("/login.html?error=true")
-          //.failureHandler(authenticationFailureHandler())
           .and()
           .logout()
           .logoutUrl("/perform_logout")
           .deleteCookies("JSESSIONID");
         http.headers().frameOptions().sameOrigin();
-          //.logoutSuccessHandler(logoutSuccessHandler());
     }
     
     @Bean

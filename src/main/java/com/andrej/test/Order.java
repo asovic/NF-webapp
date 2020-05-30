@@ -1,15 +1,18 @@
 package com.andrej.test;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -30,7 +33,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Table(name="order_test")
 public class Order implements Serializable{
     
-
 	private static final long serialVersionUID = 8994124296617397940L;
 	
 	@Id
@@ -44,11 +46,34 @@ public class Order implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	@Column(name="username")
+	private String username;
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	@Column(columnDefinition="date")
+	LocalDate order_date = LocalDate.now();
+
+	public LocalDate getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(LocalDate order_date) {
+		this.order_date = order_date;
+	}
+	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="order_id")
     @JsonProperty("bottle")
     private List<Bottle> bottle;
-    
+
 	@Transient
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
