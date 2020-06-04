@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<meta charset="UTF-8">
+<title>Podrobnosti naročila</title>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th> Aroma </th>
+            <th> Nikotin (mg/ml) </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${order_detail.empty}">
+            <td colspan="2"> V izbranem naročilu ni stekleničk. </td>
+        </tr>
+        <tr th:each="bottle : ${order_detail}">
+            <td><span th:text="${bottle.aroma}"> Aroma </span></td>
+            <td><span th:text="${bottle.nic}"> Nikotin </span></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

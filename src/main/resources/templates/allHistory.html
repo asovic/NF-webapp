@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<meta charset="UTF-8">
+<title>Zgodovina naročil</title>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th> Id naročila </th>
+            <th> Datum naročila </th>
+            <th> Naročena količina </th>
+            <th> Status naročila</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${allHistory.empty}">
+            <td colspan="2"> Ni dosedanjih naročil </td>
+        </tr>
+        <tr th:each="order : ${allHistory}">
+            <td><a th:text="${order.id}" th:href="|/allHistory/${order.id}|"> Id naročila </a></td>
+            <td><span th:text="${order.order_date}"> Datum naročila </span></td>
+            <td><span th:text="${order.bottle.size()}"> Naročena količina </span></td>
+            <td><div th:switch="${order.status}">
+            <p th:case="0">V izpolnjevanju</p>
+            <p th:case="1">Končano</p>
+            </div></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
