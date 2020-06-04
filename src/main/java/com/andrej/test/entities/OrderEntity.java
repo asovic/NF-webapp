@@ -1,4 +1,7 @@
-package com.andrej.test;
+// Object in which orders are saved
+// TODO uredi getters in setters
+
+package com.andrej.test.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -31,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Entity(name="order_test")
 @Table(name="order_test")
-public class Order implements Serializable{
+public class OrderEntity implements Serializable{
     
 	private static final long serialVersionUID = 8994124296617397940L;
 	
@@ -58,8 +61,11 @@ public class Order implements Serializable{
 		this.username = username;
 	}
 	
+	@Column(name="status", columnDefinition="tinyint default 0")
+	private int status;
+	
 	@Column(columnDefinition="date")
-	LocalDate order_date = LocalDate.now();
+	private LocalDate order_date;
 
 	public LocalDate getOrder_date() {
 		return order_date;
@@ -70,21 +76,21 @@ public class Order implements Serializable{
 	}
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="order_id")
+	@JoinColumn(name="orderid")
     @JsonProperty("bottle")
-    private List<Bottle> bottle;
+    private List<BottleEntity> bottle;
 
 	@Transient
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("bottle")
-    public List<Bottle> getBottle() {
+    public List<BottleEntity> getBottle() {
     	return bottle;
     }
 
     @JsonProperty("bottle")
-    public void setBottle(List<Bottle> bottle) {
+    public void setBottle(List<BottleEntity> bottle) {
     	this.bottle = bottle;
     }
 
@@ -97,5 +103,13 @@ public class Order implements Serializable{
     public void setAdditionalProperty(String name, Object value) {
     	this.additionalProperties.put(name, value);
     }
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 }

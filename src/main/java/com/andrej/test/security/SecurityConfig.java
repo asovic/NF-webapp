@@ -1,4 +1,4 @@
-package com.andrej.test;
+package com.andrej.test.security;
 
 import javax.sql.DataSource;
 

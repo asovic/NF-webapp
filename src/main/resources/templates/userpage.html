@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <script>
       function load_order() {
@@ -16,6 +17,8 @@
 <div>
 <img alt="logo" src="logo.jpg" height="120" width="300">
 </div>
+<!-- <div sec:authorize="isAuthenticated()"> -->
+<!--       Prijavljeni ste kot: <span sec:authentication="name"></span></div> -->
 <hr>
 <div style="height: 245px; width: 200px; float:left">
 <br>
