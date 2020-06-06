@@ -1,26 +1,35 @@
 package com.andrej.test.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
+@Table(name="users")
 public class UserEntity {
 	
-	private Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	//private Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	
-	public UserEntity() {
-		super();
-		this.username = auth.getName();
-	}
+//	public UserEntity(String logged) {
+//		super();
+//		this.username = auth.getName();
+//	}
 	@Id
 	private String username;
 
 	private String password;
 	
+    @Transient
+    private String passwordConfirm;
+	
 	private int enabled;
+	
+    @ManyToMany
+    private Set<UserRolesEntity> roles;
 	
 	public String getUsername() {
 		return username;
@@ -44,6 +53,22 @@ public class UserEntity {
 
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
+	public Set<UserRolesEntity> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<UserRolesEntity> roles) {
+		this.roles = roles;
 	}
 
 }

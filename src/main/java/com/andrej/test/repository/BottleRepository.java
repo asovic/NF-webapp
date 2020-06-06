@@ -12,4 +12,7 @@ public interface BottleRepository extends JpaRepository<BottleEntity, Long>{
 			"from bottle b inner join order_test ot on b.orderid = ot.id " + 
 			"where b.orderid = :order_id and ot.username = :username")
 	List<BottleEntity> findByOrderid(Long order_id, String username);
+	
+	@Query("select b from bottle b where b.orderid =:oid")
+	List<BottleEntity> findByOid(Long oid);
 }

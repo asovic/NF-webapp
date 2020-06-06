@@ -1,40 +1,48 @@
 package com.andrej.test.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.Set;
 
-@Entity
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity(name="user_roles")
 public class UserRolesEntity {
 	
-	@Id
-	private Long user_role_id;
-	
-	private String username;
-	
-	private String role;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public Long getUser_role_id() {
-		return user_role_id;
+    private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserEntity> users;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setUser_role_id(Long user_role_id) {
-		this.user_role_id = user_role_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getRole() {
-		return role;
+	public Set<UserEntity> getUsers() {
+		return users;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setUsers(Set<UserEntity> users) {
+		this.users = users;
 	}
+
 
 }

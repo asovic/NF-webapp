@@ -40,7 +40,7 @@ tr:nth-child(even) {
             <td><span th:text="${order.order_date}"> Datum naročila </span></td>
             <td><span th:text="${order.bottle.size()}"> Naročena količina </span></td>
             <td><div th:switch="${order.status}">
-            <p th:case="0">V izpolnjevanju</p>
+            <div th:case="0">V izpolnjevanju <form><button th:onclick="if(!(confirm('Želiš izbrisati naročilo??') )) return false" th:formaction="|/allHistory/delete/${order.id}|">Izbriši</button></form></div>
             <p th:case="1">Končano</p>
             </div></td>
         </tr>

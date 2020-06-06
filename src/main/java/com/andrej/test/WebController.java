@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,6 +31,7 @@ import com.andrej.test.entities.OrderEntity;
 import com.andrej.test.entities.UserEntity;
 import com.andrej.test.repository.BottleRepository;
 import com.andrej.test.repository.OrderRepository;
+import com.andrej.test.service.SecurityServiceImpl;
 
 
 
@@ -39,7 +41,7 @@ public class WebController {
 	Logger logger = LoggerFactory.getLogger(WebController.class);
 	Ddmenu dd = new Ddmenu();
 	ObjectMapper mapper = new ObjectMapper();
-	UserEntity username;
+	SecurityServiceImpl securityService;
 	
 	@Autowired
 	private BottleRepository bottleRepo;
@@ -74,7 +76,7 @@ public class WebController {
 	@RequestMapping(value = "/order/", method = RequestMethod.POST, consumes="application/json")
 	public String save_order(@RequestBody String json_input) {
 		OrderEntity order = new OrderEntity();
-		username = new UserEntity();
+		String username = securityService.findLoggedInUsername();
 		try {
 			order = mapper.readValue(json_input, OrderEntity.class);
 		} catch (JsonMappingException e) {
@@ -82,26 +84,39 @@ public class WebController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		order.setUsername(username.getUsername());
+		order.setUsername(username);
 		order.setOrder_date(LocalDate.now());
 		orderRepo.save(order);
 		return "order";
 	}
 	
 	@GetMapping(value = "/allHistory")
-	//@ResponseBody
 	public String allHistory(Model model) {
-		username = new UserEntity();
-		List<OrderEntity> listOfOrders = orderRepo.findByUsername(username.getUsername());
+		String username = securityService.findLoggedInUsername();
+		List<OrderEntity> listOfOrders = orderRepo.findByUsername(username);
 		model.addAttribute("allHistory", listOfOrders);
 		return "allHistory";
 	}
 	
 	@GetMapping(value="/allHistory/{oid}")
 	public String order_detail(Model model, @PathVariable Long oid) {
-		List<BottleEntity> order_detail = bottleRepo.findByOrderid(oid, username.getUsername());
+		List<BottleEntity> order_detail = bottleRepo.findByOrderid(oid, securityService.findLoggedInUsername());
 		model.addAttribute("order_detail", order_detail);
+		model.addAttribute("order_id", oid);
 		return "singleOrder";
 	}
-
+	
+	//Kontroler za brisanje
+	@GetMapping(value="allHistory/delete/{oid}")
+	public String delete_order(@PathVariable Long oid) {
+		orderRepo.deleteByIdAndUsername(oid, securityService.findLoggedInUsername());
+		return "redirect:/allHistory";
+	}
+	
+	//(TODO) Kontroler za ponovno naročilo
+	@GetMapping(value="allHistory/reorder/{oid}")
+	public String reorder(@PathVariable Long oid) {
+		return "redirect:/allHistory";
+	}
+	
 }

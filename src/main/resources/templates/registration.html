@@ -1,0 +1,27 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NF: Registracija</title>
+</head>
+<body>
+<h2>
+	Registracija novega uporabnika
+</h2>
+<form th:action="@{/registration}" method="POST" id="register" th:object="${userForm}">
+	<div>
+		<label for="username">Uporabniško ime:</label>
+		<input th:field="*{username}" id="username"/>
+	</div>
+	<div>
+		<label for="password">Geslo:</label>
+		<input th:field="*{password}" id="password"/>
+	</div>
+	<div>
+		<label for="passwordConfirm">Ponovi geslo:</label>
+		<input th:field="*{passwordConfirm}" id="passwordConfirm"/>
+	</div>
+	<button type="submit">Registriraj</button>
+</form>
+</body>
+</html>

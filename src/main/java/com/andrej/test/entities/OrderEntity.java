@@ -75,7 +75,7 @@ public class OrderEntity implements Serializable{
 		this.order_date = order_date;
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name="orderid")
     @JsonProperty("bottle")
     private List<BottleEntity> bottle;
