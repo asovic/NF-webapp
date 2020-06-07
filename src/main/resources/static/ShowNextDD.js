@@ -1,7 +1,7 @@
-document.getElementById("btn").addEventListener("click", showDD);
-document.getElementById("btn-remove").addEventListener("click", removeDD);
+document.getElementById("myBtn").addEventListener("click", showDD);
+document.getElementById("myBtn-remove").addEventListener("click", removeDD);
 
-var remove_button = document.getElementById("btn-remove");
+var remove_button = document.getElementById("myBtn-remove");
 var counter = 1;
 
 function showDD() {

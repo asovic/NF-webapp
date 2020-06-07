@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.andrej.test.entities.UserEntity;
+import com.andrej.test.repository.RoleRepository;
 import com.andrej.test.repository.UserRepository;
-import com.andrej.test.repository.UserRolesRepository;
 
 public class UserServiceImpl implements UserService {
 	
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private UserRolesRepository roleRepository;
+    private RoleRepository roleRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     

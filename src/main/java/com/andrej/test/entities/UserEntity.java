@@ -1,74 +1,62 @@
 package com.andrej.test.entities;
 
+import javax.persistence.*;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 @Entity
-@Table(name="users")
+@Table(name = "user")
 public class UserEntity {
-	
-	//private Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	
-//	public UserEntity(String logged) {
-//		super();
-//		this.username = auth.getName();
-//	}
-	@Id
-	private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	private String password;
-	
+    private String username;
+
+    private String password;
+
     @Transient
     private String passwordConfirm;
-	
-	private int enabled;
-	
-    @ManyToMany
-    private Set<UserRolesEntity> roles;
-	
-	public String getUsername() {
-		return username;
-	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    @ManyToMany(cascade=CascadeType.ALL)
+    private Set<RoleEntity> roles;
 
-	public String getPassword() {
-		return password;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public int getEnabled() {
-		return enabled;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Set<UserRolesEntity> getRoles() {
-		return roles;
-	}
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
 
-	public void setRoles(Set<UserRolesEntity> roles) {
-		this.roles = roles;
-	}
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
+    }
 }

@@ -42,6 +42,7 @@ public class WebController {
 	Ddmenu dd = new Ddmenu();
 	ObjectMapper mapper = new ObjectMapper();
 	SecurityServiceImpl securityService;
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	
 	@Autowired
 	private BottleRepository bottleRepo;
@@ -56,6 +57,8 @@ public class WebController {
 	
 	@GetMapping(value = "/userpage")
 	public String userpage() {
+		//String username = securityService.findLoggedInUsername();
+		//System.out.println(username);
 		return "userpage";
 		}
 
@@ -76,7 +79,7 @@ public class WebController {
 	@RequestMapping(value = "/order/", method = RequestMethod.POST, consumes="application/json")
 	public String save_order(@RequestBody String json_input) {
 		OrderEntity order = new OrderEntity();
-		String username = securityService.findLoggedInUsername();
+		//System.out.println(securityService.getLoggedInName());
 		try {
 			order = mapper.readValue(json_input, OrderEntity.class);
 		} catch (JsonMappingException e) {
@@ -84,7 +87,7 @@ public class WebController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		order.setUsername(username);
+		//order.setUsername(securityService.getLoggedInName());
 		order.setOrder_date(LocalDate.now());
 		orderRepo.save(order);
 		return "order";
@@ -92,15 +95,15 @@ public class WebController {
 	
 	@GetMapping(value = "/allHistory")
 	public String allHistory(Model model) {
-		String username = securityService.findLoggedInUsername();
-		List<OrderEntity> listOfOrders = orderRepo.findByUsername(username);
+		//String username = securityService.getLoggedInName();
+		List<OrderEntity> listOfOrders = orderRepo.findByUsername("andrej");
 		model.addAttribute("allHistory", listOfOrders);
 		return "allHistory";
 	}
 	
 	@GetMapping(value="/allHistory/{oid}")
 	public String order_detail(Model model, @PathVariable Long oid) {
-		List<BottleEntity> order_detail = bottleRepo.findByOrderid(oid, securityService.findLoggedInUsername());
+		List<BottleEntity> order_detail = bottleRepo.findByOrderid(oid, "andrej");
 		model.addAttribute("order_detail", order_detail);
 		model.addAttribute("order_id", oid);
 		return "singleOrder";
@@ -109,7 +112,7 @@ public class WebController {
 	//Kontroler za brisanje
 	@GetMapping(value="allHistory/delete/{oid}")
 	public String delete_order(@PathVariable Long oid) {
-		orderRepo.deleteByIdAndUsername(oid, securityService.findLoggedInUsername());
+		orderRepo.deleteByIdAndUsername(oid, "andrej");
 		return "redirect:/allHistory";
 	}
 	
