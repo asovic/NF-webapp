@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <head>
 <style>
+.nav-item{
+	margin-left: 10vw;
+  font-family: 'Kaushan Script', cursive;
+}
+.navbar{
+	margin-bottom: 8vh;
+  box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -17,18 +29,66 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+.container-fluid{
+  max-width: 90%;
+  padding: 10px;
+	box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+.gumb{
+	padding: 30px;
+  font-weight: 600;
+  box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+.naslovnica-tabele{
+  background-color: #f6b72a;
+}
+.obarvan-gumb{
+  background-color:#f6b72a;
+}
+.obarvan-gumb:hover{
+	box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
 </style>
 <meta charset="UTF-8">
 <title>Zgodovina naročil</title>
 </head>
 <body>
-<table>
-    <thead>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand mx-3" href="#">
+          <img alt="logo" src="../static/logo.jpg" height="120" width="300">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="btn btn-outline-warning gumb" href="#" onclick="load_order()">NAROČILO</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-warning gumb" href="#" onclick="load_history()">ZGODOVINA</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-warning gumb" href="#">ODJAVA</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+  <table class="table table-hover">
+    <thead class="naslovnica-tabele">
         <tr>
-            <th> Id naročila </th>
-            <th> Datum naročila </th>
-            <th> Naročena količina </th>
-            <th> Status naročila</th>
+            <th scope="col"> Id naročila </th>
+            <th scope="col"> Datum naročila </th>
+            <th scope="col"> Naročena količina </th>
+            <th scope="col"> Status naročila</th>
         </tr>
     </thead>
     <tbody>
@@ -40,11 +100,13 @@ tr:nth-child(even) {
             <td><span th:text="${order.order_date}"> Datum naročila </span></td>
             <td><span th:text="${order.bottle.size()}"> Naročena količina </span></td>
             <td><div th:switch="${order.status}">
-            <div th:case="0">V izpolnjevanju <form><button th:onclick="if(!(confirm('Želiš izbrisati naročilo??') )) return false" th:formaction="|/allHistory/delete/${order.id}|">Izbriši</button></form></div>
+            <div th:case="0">V izpolnjevanju <form><button class="btn obarvan-gumb" th:onclick="if(!(confirm('Želiš izbrisati naročilo??') )) return false" th:formaction="|/allHistory/delete/${order.id}|">Izbriši</button></form></div>
             <p th:case="1">Končano</p>
             </div></td>
         </tr>
     </tbody>
-</table>
+  </table>
+</div>
+
 </body>
 </html>

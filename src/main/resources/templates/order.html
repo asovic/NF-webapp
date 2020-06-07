@@ -3,8 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <title>Order completed</title>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<style>
+    #thank-you{
+        font-family: 'Kaushan Script', cursive;
+        font-size: 4rem;
+        font-weight: 700;
+        text-shadow: 4px 4px 2px #f6b72a;
+        margin-top: 10vh;
+    }
+    .fade{
+        -webkit-animation: fadeIn 1s ease-in;
+        animation: fadeIn 1s ease-in;
+        animation-fill-mode: both;
+    }
+    #tnx-animate{
+        -webkit-animation: textAnimate 0.5s 0.5s ease-in;
+        animation: textAnimate 0.5s 0.5s ease-in;
+        animation-fill-mode: both;
+    }
+    #again-animate{
+        -webkit-animation: textAnimate 0.5s 1s ease-in;
+        animation: textAnimate 0.5s 1s ease-in;
+        animation-fill-mode: both;
+    }
+    @-webkit-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes textAnimate {
+        0% {
+            font-size: 0;
+        }
+        100% {
+            font-size: 4rem;
+        }
+    }
+    @keyframes textAnimate {
+        0% {
+            font-size: 0;
+        }
+        100% {
+            font-size: 4rem;
+        }
+    }
+</style>
 </head>
 <body>
-Thank you, come again.
+    <div class="container-fluid text-center">
+        <img class="my-5 fade" alt="logo" src="../static/logo.jpg" width="50%">
+        <p id="thank-you"><span id="tnx-animate">Thank you,</span><span id="again-animate"> come again.</span></p>
+    </div>
 </body>
 </html>

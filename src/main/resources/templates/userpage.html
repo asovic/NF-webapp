@@ -2,6 +2,8 @@
 <html xmlns:th="https://www.thymeleaf.org"
   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
+      <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script>
       function load_order() {
             document.getElementById("subpage").innerHTML='<object width="1000px" height="600px" type="text/html" data="newOrder" ></object>';
@@ -12,14 +14,51 @@
 </script>
 <meta charset="UTF-8">
 <title>User page</title>
+<style type="text/css">
+.nav-item{
+      margin-left: 10vw;
+      font-family: 'Kaushan Script', cursive;
+}
+.navbar{
+      box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+.gumb{
+	padding: 30px;
+      font-weight: 600;
+      box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+</style>
 </head>
 <body>
-<div>
-<img alt="logo" src="logo.jpg" height="120" width="300">
-</div>
+      <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand mx-3" href="#">
+                  <img alt="logo" src="../static/logo.jpg" height="120" width="300">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="btn btn-outline-warning gumb" href="#" onclick="load_order()">NAROČILO</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-warning gumb" href="#" onclick="load_history()">ZGODOVINA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-warning gumb" href="#">ODJAVA</a>
+                </li>
+              </ul>
+            </div>
+      </nav>
 <!-- <div sec:authorize="isAuthenticated()"> -->
 <!--       Prijavljeni ste kot: <span sec:authentication="name"></span></div> -->
-<hr>
+<!--
 <div style="height: 245px; width: 200px; float:left">
 <br>
 <button href ="#" onclick="load_order()"> NAROČILO </button>
@@ -29,5 +68,6 @@
 </div>
 <div id="subpage" style="height: 600px; width: 1000px; float:left">
 </div>
+-->
 </body>
 </html>

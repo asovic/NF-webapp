@@ -2,26 +2,66 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NF: Registracija</title>
+	<title>NF: Registracija</title>
+	<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<style type="text/css">
+		.navbar{
+			box-shadow: 1px 1px 3px 2px #f6b72a;
+			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+			margin-bottom: 5vh;
+		}
+		.container-fluid{
+			max-width: 90%;
+			padding: 10px;
+			box-shadow: 1px 1px 3px 2px #f6b72a;
+			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+		}
+		.form-control{
+			width: 50%;
+		}
+		.obarvan-gumb{
+			background-color:#f6b72a;
+			font-family: 'Kaushan Script', cursive;
+			text-transform: uppercase;
+		}
+		.obarvan-gumb:hover{
+			box-shadow: 1px 1px 3px 2px #f6b72a;
+			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+		}
+		h2{
+			font-family: 'Kaushan Script', cursive;
+		}
+	</style>
 </head>
 <body>
-<h2>
-	Registracija novega uporabnika
-</h2>
-<form th:action="@{/registration}" method="POST" id="register" th:object="${userForm}">
-	<div>
-		<label for="username">Uporabniško ime:</label>
-		<input th:field="*{username}" id="username"/>
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<a class="navbar-brand mx-3" href="#">
+			  <img alt="logo" src="../static/logo.jpg" height="120" width="300">
+		</a>
+  	</nav>
+  	<div class="container-fluid text-center">
+		<h2 class="my-5">
+			Registracija novega uporabnika
+		</h2>
+		<form th:action="@{/registration}" method="POST" id="register" th:object="${userForm}">
+			<div class="form-group">
+				<label for="username">Uporabniško ime:</label>
+				<input class="form-control mx-auto text-center" th:field="*{username}" id="username"/>
+			</div>
+			<div class="form-group">
+				<label for="password">Geslo:</label>
+				<input class="form-control mx-auto text-center" th:field="*{password}" id="password"/>
+			</div>
+			<div class="form-group">
+				<label for="passwordConfirm">Ponovi geslo:</label>
+				<input class="form-control mx-auto text-center" th:field="*{passwordConfirm}" id="passwordConfirm"/>
+			</div>
+			<button type="submit" class="btn obarvan-gumb my-2">Registriraj</button>
+		</form>
 	</div>
-	<div>
-		<label for="password">Geslo:</label>
-		<input th:field="*{password}" id="password"/>
-	</div>
-	<div>
-		<label for="passwordConfirm">Ponovi geslo:</label>
-		<input th:field="*{passwordConfirm}" id="passwordConfirm"/>
-	</div>
-	<button type="submit">Registriraj</button>
-</form>
 </body>
 </html>
