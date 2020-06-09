@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.andrej.test.listener.NewOrderListener;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "bottle"
 })
 
+@EntityListeners(NewOrderListener.class)
 @Entity(name="order_test")
 @Table(name="order_test")
 public class OrderEntity implements Serializable{

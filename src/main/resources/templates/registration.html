@@ -13,18 +13,18 @@
 			margin-bottom: 5vh;
 		}
 		.container-fluid{
-			max-width: 90%;
+			max-width: 40%;
 			padding: 10px;
-			box-shadow: 1px 1px 3px 2px #f6b72a;
-			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
-			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+ 			box-shadow: 1px 1px 3px 2px #f6b72a; 
+ 			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a; 
+ 			-moz-box-shadow: 1px 1px 3px 2px #f6b72a; 
 		}
 		.form-control{
-			width: 50%;
+			width: 20%;
 		}
 		.obarvan-gumb{
 			background-color:#f6b72a;
-			font-family: 'Kaushan Script', cursive;
+			font-family: "Helvetica Neue";
 			text-transform: uppercase;
 		}
 		.obarvan-gumb:hover{
@@ -33,15 +33,15 @@
 			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
 		}
 		h2{
-			font-family: 'Kaushan Script', cursive;
-			text-shadow: 4px 4px 2px #f6b72a;
+			font-family: "Helvetica Neue";
+/* 			text-shadow: 4px 4px 2px #f6b72a; */
 		}
 	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light">
 		<a class="navbar-brand mx-3" href="#">
-			  <img alt="logo" src="../static/logo.jpg" height="120" width="300">
+			  <img alt="logo" src="logo.jpg" height="120" width="300">
 		</a>
   	</nav>
   	<div class="container-fluid text-center">
@@ -52,14 +52,17 @@
 			<div class="form-group">
 				<label for="username">Uporabniško ime:</label>
 				<input class="form-control mx-auto text-center" th:field="*{username}" id="username"/>
+				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</p>
 			</div>
 			<div class="form-group">
 				<label for="password">Geslo:</label>
-				<input class="form-control mx-auto text-center" th:field="*{password}" id="password"/>
+				<input class="form-control mx-auto text-center" th:field="*{password}" type="password"/>
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</p>
 			</div>
 			<div class="form-group">
 				<label for="passwordConfirm">Ponovi geslo:</label>
-				<input class="form-control mx-auto text-center" th:field="*{passwordConfirm}" id="passwordConfirm"/>
+				<input class="form-control mx-auto text-center" th:field="*{passwordConfirm}" type="password"/>
+				<p th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Error</p>
 			</div>
 			<button type="submit" class="btn obarvan-gumb my-2">Registriraj</button>
 		</form>

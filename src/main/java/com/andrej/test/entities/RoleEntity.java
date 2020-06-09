@@ -1,9 +1,10 @@
 package com.andrej.test.entities;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+import javax.persistence.*;
+
+@Entity(name="role")
 @Table(name = "role")
 public class RoleEntity {
     @Id
@@ -13,7 +14,7 @@ public class RoleEntity {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<UserEntity> users;
+    private Set<UserEntity> user;
 
     public Long getId() {
         return id;
@@ -32,10 +33,10 @@ public class RoleEntity {
     }
 
     public Set<UserEntity> getUsers() {
-        return users;
+        return user;
     }
 
     public void setUsers(Set<UserEntity> users) {
-        this.users = users;
+        this.user = users;
     }
 }

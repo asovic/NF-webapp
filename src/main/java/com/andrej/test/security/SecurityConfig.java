@@ -1,7 +1,5 @@
 package com.andrej.test.security;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -13,64 +11,53 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
     @Qualifier("userDetailsServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
-	
-	@Autowired
-	DataSource dataSource;
-	
-	@Autowired
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-  	  auth.jdbcAuthentication().dataSource(dataSource)
-  		.usersByUsernameQuery(
-  			"select username,password, enabled from users where username=?")
-  		.authoritiesByUsernameQuery(
-  			"select username, role from user_roles where username=?").passwordEncoder(new BCryptPasswordEncoder());
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
     
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new CustomUrlAuthenticationSuccessHandler();
+    }
+
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http
-          .csrf().disable()
-          .authorizeRequests()
-          .antMatchers("/").permitAll()
-          .antMatchers("/newOrder**").authenticated()
-          .antMatchers("/userpage**").authenticated()
-          .antMatchers("/admin/**").hasRole("ADMIN")
-          .antMatchers("/registration").permitAll()
-          .antMatchers("/login*").permitAll()
-          .anyRequest().authenticated()
-          .and()
-          .formLogin()
-          .loginProcessingUrl("/login")
-          .defaultSuccessUrl("/userpage", true)
-          .and()
-          .logout()
-          .logoutUrl("/perform_logout")
-          .deleteCookies("JSESSIONID");
+        	.csrf().disable()
+            .authorizeRequests()
+            	.antMatchers("/").permitAll()
+            	.antMatchers("/login*").permitAll()
+                .antMatchers("/resources/**", "/registration**").permitAll()
+                .antMatchers("/newOrder**", "/userpage**", "/order/", "/singleOrder**").authenticated()
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+            	.loginProcessingUrl("/login")
+            	.successHandler(myAuthenticationSuccessHandler())
+                .and()
+            .logout()
+                .permitAll();
         http.headers().frameOptions().sameOrigin();
     }
-    
+
     @Bean
     public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
     }
-
+    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-    
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 }

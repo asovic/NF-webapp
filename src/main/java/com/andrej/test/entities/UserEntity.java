@@ -1,7 +1,8 @@
 package com.andrej.test.entities;
 
-import javax.persistence.*;
 import java.util.Set;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
@@ -17,8 +18,17 @@ public class UserEntity {
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany
+    @JoinTable( 
+        name = "users_roles", 
+        joinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id"))
     private Set<RoleEntity> roles;
+    
+    @Column(columnDefinition = "integer default 1")
+    private Integer enabled = 1;
 
     public Long getId() {
         return id;
@@ -52,11 +62,19 @@ public class UserEntity {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<RoleEntity> getRoles() {
+    public Set<RoleEntity> getRole() {
         return roles;
     }
 
-    public void setRoles(Set<RoleEntity> roles) {
+    public void setRole(Set<RoleEntity> roles) {
         this.roles = roles;
     }
+
+	public Integer getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
+	}
 }

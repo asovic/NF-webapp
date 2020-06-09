@@ -15,6 +15,14 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 	List<OrderEntity> findByUsername(String username);
 	
+	@Query(value="select o from order_test o where o.status = '0'")
+	List<OrderEntity> findUnfilled();
+	
+	@Transactional
+	@Modifying
+	@Query(value="update order_test o set o.status = '1' where o.id = :oid")
+	void markAsFilled(Long oid);
+	
 	//query za brisanje
 	@Transactional
 	@Modifying
