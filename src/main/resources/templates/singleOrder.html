@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <style>
-.nav-item{
-	margin-left: 10vw;
-  font-family: "Helvetica Neue";
+body{
+	margin: 1%;
+	background-color: #415b76;
+	font-family: "Century Gothic";
 }
-.navbar{
-	box-shadow: 1px 1px 3px 2px #f6b72a;
+.history{
+  background-color: #3a5269;
+  padding: 2% 1%;
 	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
 	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
-	margin-bottom: 8vh;
+  box-shadow: 1px 1px 3px 2px #f6b72a;
 }
 table {
-  font-family: "Helvetica Neue";
+  background-color: #2c3e50;
   border-collapse: collapse;
   width: 100%;
 }
-
-td, th {
+td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  color: white;
 }
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-.container-fluid{
-  max-width: 90%;
-}
-.gumb{
-	padding: 30px;
-  font-weight: 600;
-  box-shadow: 1px 1px 3px 2px #f6b72a;
-	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
-	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
-}
-.naslovnica-tabele{
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
   background-color: #f6b72a;
+  color: #2c3e50;
 }
-.obarvan-gumb{
+tr:nth-child(even) {
+  background-color: #415b76;
+}
+.ponovi-gumb{
   background-color:#f6b72a;
-  font-family: "Helvetica Neue";
   text-transform: uppercase;
+  font-weight: 600;
+  color: #2c3e50;
 }
-.obarvan-gumb:hover{
-	box-shadow: 1px 1px 3px 2px #f6b72a;
-	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
-	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+.ponovi-gumb:hover{
+	-webkit-box-shadow: 1px 1px 3px 2px white;
+	-moz-box-shadow: 1px 1px 3px 2px white;
+	box-shadow: 1px 1px 3px 2px white;
 }
 </style>
 <meta charset="UTF-8">
@@ -79,9 +74,9 @@ tr:nth-child(even) {
 <!--       </ul> -->
 <!--     </div> -->
 <!--   </nav> -->
-  <div class="container-fluid">
-    <table class="table table-hover">
-      <thead class="naslovnica-tabele">
+  <div class="container history">
+    <table class="table">
+      <thead>
           <tr>
               <th scope="col"> Aroma </th>
               <th scope="col"> Nikotin (mg/ml) </th>
@@ -98,7 +93,7 @@ tr:nth-child(even) {
       </tbody>
     </table>
     <hr>
-    <form><button disabled th:formaction="|/allHistory/reorder/${order_id}|" class="btn obarvan-gumb">Ponovno naroči</button></form>
+    <form><button disabled th:formaction="|/allHistory/reorder/${order_id}|" class="btn ponovi-gumb">Ponovno naroči</button></form>
   </div>
 </body>
 </html>

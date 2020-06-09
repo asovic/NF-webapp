@@ -3,82 +3,49 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Naročilo</title>
     <style type="text/css">
-		.nav-item{
-			margin-left: 10vw;
-			font-family: "Helvetica Neue";
-		}
-		.navbar{
-			box-shadow: 1px 1px 3px 2px #f6b72a;
-			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
-			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
-			margin-bottom: 5vh;
+		body{
+			margin: 1%;
+			background-color: #415b76;
+			font-family: "Century Gothic";
 		}
 	    .nic{
 	        margin-right: 10px;
 	    }
-		.container-fluid{
-			font-family: "Helvetica Neue";
-			max-width: 90%;
-			padding: 10px;
-			box-shadow: 1px 1px 3px 2px #f6b72a;
-			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
-			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
-		}
-		.gumb{
-			padding: 30px;
+		.new-order{
+			background-color: #3a5269;
+			font-family: "Century Gothic";
+			color: #f6b72a;
 			font-weight: 600;
-			box-shadow: 1px 1px 3px 2px #f6b72a;
+			padding: 2% 0;
 			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
 			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+			box-shadow: 1px 1px 3px 2px #f6b72a;
 		}
 		.obarvan-gumb{
 			background-color:#f6b72a;
+			color: #3a5269;
 			text-transform: uppercase;
+			font-weight: 600;
 		}
 		.obarvan-gumb:hover{
-			box-shadow: 1px 1px 3px 2px #f6b72a;
-			-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
-			-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+			-webkit-box-shadow: 1px 1px 3px 2px white;
+			-moz-box-shadow: 1px 1px 3px 2px white;
+			box-shadow: 1px 1px 3px 2px white;
 		}
 		.custom-select{
 			width: fit-content;
 		}
-		div{
-			font-weight: 500;
-		}
 		h2{
-			text-shadow: 4px 4px 2px #f6b72a;
+			color: #f6b72a;
+			font-weight: 600;
 		}
     </style>
 </head>
 <body>
-<!-- 	<nav class="navbar navbar-expand-lg navbar-light"> -->
-<!-- 		<a class="navbar-brand mx-3" href="#"> -->
-<!-- 			  <img alt="logo" src="../static/logo.jpg" height="120" width="300"> -->
-<!-- 		</a> -->
-<!-- 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation"> -->
-<!-- 		  <span class="navbar-toggler-icon"></span> -->
-<!-- 		</button> -->
-	  
-<!-- 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02"> -->
-<!-- 		  <ul class="navbar-nav mr-auto mt-2 mt-lg-0"> -->
-<!-- 			<li class="nav-item active"> -->
-<!-- 			  <a class="btn btn-outline-warning gumb" href="#" onclick="load_order()">Naročilo</a> -->
-<!-- 			</li> -->
-<!-- 			<li class="nav-item"> -->
-<!-- 			  <a class="btn btn-outline-warning gumb" href="#" onclick="load_history()">Zgodovina</a> -->
-<!-- 			</li> -->
-<!-- 			<li class="nav-item"> -->
-<!-- 				<a class="btn btn-outline-warning gumb" href="#">Odjava</a> -->
-<!-- 			  </li> -->
-<!-- 		  </ul> -->
-<!-- 		</div> -->
-<!-- 	</nav> -->
-	<div class="container-fluid text-center">
+	<div class="container new-order text-center">
 		<h2>
 			Naročilo tekočin:
 		</h2>
