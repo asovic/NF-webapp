@@ -20,7 +20,7 @@ public class EmailConfiguration {
         mailSender.setPort(587);
         
         mailSender.setUsername("nektar.fog@gmail.com");
-        mailSender.setPassword("@nektarf0g");
+        mailSender.setPassword("***");
         
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
