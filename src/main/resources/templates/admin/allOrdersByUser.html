@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<head>
+<style>
+.nav-item{
+	margin-left: 10vw;
+  font-family: "Helvetica Neue";
+}
+.navbar{
+	margin-bottom: 8vh;
+  box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+table {
+  font-family: "Helvetica Neue";
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.container-fluid{
+  max-width: 90%;
+  padding: 10px;
+	box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+.gumb{
+	padding: 30px;
+  font-weight: 600;
+  box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+.naslovnica-tabele{
+  background-color: #f6b72a;
+}
+.obarvan-gumb{
+  background-color:#f6b72a;
+}
+.obarvan-gumb:hover{
+	box-shadow: 1px 1px 3px 2px #f6b72a;
+	-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
+	-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
+}
+</style>
+<meta charset="UTF-8">
+<title>Zgodovina naročil</title>
+</head>
+<body>
+
+<div class="container-fluid">
+  <table class="table table-hover">
+    <thead class="naslovnica-tabele">
+        <tr>
+            <th scope="col"> Id naročila </th>
+            <th scope="col"> Datum naročila </th>
+            <th scope="col"> Naročena količina </th>
+            <th scope="col"> Status naročila</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${ordersByUser.empty}">
+            <td colspan="2"> Ni dosedanjih naročil </td>
+        </tr>
+        <tr th:unless="${ordersByUser.empty}">
+        <p>Naročnik: <span th:text="${ordersByUser[0].username}"> Datum naročila </span></p>
+        <tr th:each="order : ${ordersByUser}">
+            <td><a th:text="${order.id}" th:href="|/admin/allUsers/${order.username}/${order.id}|"> Id naročila </a></td>
+            <td><span th:text="${order.order_date}"> Datum naročila </span></td>
+            <td><span th:text="${order.bottle.size()}"> Naročena količina </span></td>
+            <td><div th:switch="${order.status}">
+            <div th:case="0">V izpolnjevanju </div>
+            <p th:case="1">Končano</p>
+            </div></td>
+        </tr>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
