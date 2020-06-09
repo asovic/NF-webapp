@@ -28,15 +28,11 @@
 		font-family: "Century Gothic";
 		color: #f6b72a;
 		font-weight: 600;
-		padding: 2% 2%;
-		-webkit-box-shadow: 1px 1px 3px 2px #f6b72a;
-		-moz-box-shadow: 1px 1px 3px 2px #f6b72a;
-		box-shadow: 1px 1px 3px 2px #f6b72a;
-	}
+    }
 </style>
 </head>
 <body>
-    <div class="container regis">
+    <div class="regis">
         <form action="/addFlavor" th:object="${addFlavor}" method="post">
             <p>Aroma: <input class="form-control" type="text" th:field="*{aroma}" /></p>
             <p><input type="submit" value="Submit" class="btn obarvan-gumb" /> <input type="reset" value="Reset" class="btn obarvan-gumb" /></p>
