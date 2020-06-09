@@ -5,11 +5,6 @@
 <meta charset="UTF-8">
 <title>Add flavor</title>
 <style type="text/css">
-    body{
-      margin: 1%;
-      background-color: #415b76;
-      font-family: "Century Gothic";
-    }
     .obarvan-gumb{
         background-color:#f6b72a;
         font-weight: 600;
@@ -24,19 +19,16 @@
         width: 40%;
     }
     .regis{
-		background-color: #33485d;
 		font-family: "Century Gothic";
 		color: #f6b72a;
 		font-weight: 600;
     }
 </style>
 </head>
-<body>
-    <div class="regis">
+    <template class="regis">
         <form action="/addFlavor" th:object="${addFlavor}" method="post">
             <p>Aroma: <input class="form-control" type="text" th:field="*{aroma}" /></p>
             <p><input type="submit" value="Submit" class="btn obarvan-gumb" /> <input type="reset" value="Reset" class="btn obarvan-gumb" /></p>
         </form>
-    </div>
-</body>
+    </template>
 </html>
