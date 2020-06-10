@@ -9,13 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.andrej</groupId>
-	<artifactId>TestThing</artifactId>
+	<artifactId>NFwebapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TestThing</name>
-	<description>Test project for Spring Boot</description>
+	<name>NFwebapp</name>
+	<description>Nektar Fog web app</description>
 
 	<properties>
-		<java.version>14</java.version>
+		<java.version>13</java.version>
 	</properties>
 
 	<dependencies>

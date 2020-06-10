@@ -22,13 +22,14 @@
 		font-family: "Century Gothic";
 		color: #f6b72a;
 		font-weight: 600;
+        background-color: #3a5269;
     }
 </style>
 </head>
-    <template class="regis">
+    <body class="regis text-center">
         <form action="/addFlavor" th:object="${addFlavor}" method="post">
             <p>Aroma: <input class="form-control" type="text" th:field="*{aroma}" /></p>
             <p><input type="submit" value="Submit" class="btn obarvan-gumb" /> <input type="reset" value="Reset" class="btn obarvan-gumb" /></p>
         </form>
-    </template>
+    </body>
 </html>
